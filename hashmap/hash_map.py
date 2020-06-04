@@ -33,6 +33,12 @@ class MyHashMap(object):
         self.linked_lists[bucket_index].remove(key)
         self.size -= 1
 
+    def update(self, key, value) -> None:
+        bucket_index = self._get_bucket_index(key)
+        node = self.linked_lists[bucket_index].get_key(key)
+        if node:
+            node.value = value
+
     def resize(self, grow=True):
         self.num_buckets = self.num_buckets * 2 if grow else self.num_buckets / 2
 

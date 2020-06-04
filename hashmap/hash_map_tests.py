@@ -63,7 +63,21 @@ class MyHashMapTests(unittest.TestCase):
         self.hashmap.remove(key="AAPL")
         self.assertIsNone(self.hashmap.get("AAPL"))
         self.assertEqual(self.hashmap.size, 0)
-        self.assertEqual()
+
+    def test_update(self):
+        self.hashmap.add(key="miko", value=10)
+        self.hashmap.add(key="GOOG", value=76)
+        self.hashmap.add(key="AAPL", value=50)
+        self.hashmap.add(key="AMZN", value=10)
+
+        self.hashmap.update(key="miko", value=120)
+        self.assertEqual(self.hashmap.get("miko"), 120)
+
+        self.hashmap.update(key="AAPL", value=12)
+        self.assertEqual(self.hashmap.get("AAPL"), 12)
+
+        self.hashmap.update(key="", value=12)
+        self.assertIsNone(self.hashmap.get(""))
 
 
 if __name__ == "__main__":
