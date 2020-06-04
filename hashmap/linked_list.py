@@ -42,10 +42,22 @@ class LinkedList:
             return node
 
     def remove(self, key) -> None:
-        curr = self.get_key(key=key)
-        if curr:
-            self.size -= 1
-            curr.remove()
+        curr = self.head
+        if self.head.key == key:
+            if self.head.next is not None:
+                self.head.next.prev = None
+            self.head = self.head.next
+        if self.tail and self.tail.key == key:
+            if self.tail.prev is not None:
+                self.tail.prev.next = None
+            self.tail = self.tail.prev
+
+        while curr:
+            if curr.key == key:
+                curr.remove()
+                self.size -= 1
+                break
+            curr = curr.next
         return
 
     def is_empty(self) -> bool:

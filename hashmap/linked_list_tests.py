@@ -86,14 +86,20 @@ class LinkedListTests(unittest.TestCase):
         self.assertEqual(self.linked_list.size, 3)
 
         self.linked_list.remove(key="Leopard")
-        self.assertTrue(self.linked_list.head, second_node)
+        self.assertEqual(self.linked_list.head, first_node)
         self.assertFalse(self.linked_list.is_empty())
         self.assertEqual(self.linked_list.size, 2)
 
         self.linked_list.remove(key="Wizard")
-        self.assertTrue(self.linked_list.head, third_node)
+        self.assertEqual(self.linked_list.head, third_node)
         self.assertFalse(self.linked_list.is_empty())
         self.assertEqual(self.linked_list.size, 1)
+
+        self.linked_list.remove(key="Harkonnen")
+        self.assertEqual(self.linked_list.size, 0)
+        self.assertIsNone(self.linked_list.head)
+        self.assertIsNone(self.linked_list.tail)
+        self.assertTrue(self.linked_list.is_empty())
 
     def test_items(self):
         self.assertEqual(self.linked_list.items(), [])
